@@ -17,7 +17,7 @@ links: # (optional)
   - name: Punch documentation
     url: https://doc.punchplatform.com
   - name: git repository
-    url: https://gitlab.thalesdigital.io/punch/parsers/punch-sample-parser
+    url: https://github.com/punchplatform/punch-sample-parser
 readme: | # (optional)
   This package includes a number of simple punchlets together with a few resource
   files and grok patterns. It shows how you can package your parser and resources
