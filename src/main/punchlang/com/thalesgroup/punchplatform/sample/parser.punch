@@ -5,11 +5,11 @@
      	raise("grok2 failed");
     }
 
-	// The greedy part is expected to be a key value format
-	if (!kv().on([logs][log][greedy]).into([logs][log])) {
-	    raise("key value failed");
-	}
-	[logs][log][client][port] = [logs][log][port].asLong();
+    // The greedy part is expected to be a key value format
+    if (!kv().on([logs][log][greedy]).into([logs][log])) {
+        raise("key value failed");
+    }
+    [logs][log][client][port] = [logs][log][port].asLong();
 }
 
 
