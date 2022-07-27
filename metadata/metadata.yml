@@ -1,0 +1,40 @@
+# Punch Artifact Hub package metadata file
+type: file
+group: ${GROUP_ID}
+logo: https://punchplatform.com/wp-content/uploads/2020/01/logos_png_logo_punch_color2019_marge.png
+version: ${VERSION}
+artifact: ${ARTIFACT_ID}
+displayName: ${ARTIFACT_ID}
+createdAt: ${BUILD_TIMESTAMP}
+description: This package provides a number of sample punchlets for you to start from.
+keywords: # (optional)
+  - Punch
+  - Example
+  - Parsers
+  - Grok
+  - Resources
+links: # (optional)
+  - name: Punch documentation
+    url: https://doc.punchplatform.com
+  - name: git repository
+    url: https://gitlab.thalesdigital.io/punch/parsers/punch-sample-parser
+readme: | # (optional)
+  This package includes a number of simple punchlets together with a few resource
+  files and grok patterns. It shows how you can package your parser and resources
+  file alltogether in a versionned punch archive.
+  
+  It also illustrates how the puncher and the taster punch applications can be used 
+  to easily test your punchlets using unit tests, sample tests, or integration tests. 
+changelog: # (optional)
+  - initial release
+maintainers: # (optional)
+  - name: punch team
+    email: contact@punchplatform.com
+provider: # (optional)
+  name: Thales Service Numérique
+  email: contact@punchplatform.com  
+punchVersionCompatible: # (optional)
+  - 8.x
+install:
+  Upload to your platform artifact server. Then use is as a punchline dependency.
+ 

@@ -1,0 +1,46 @@
+apiVersion: punchline.punchplatform.io/v2
+kind: BatchPunchline
+metadata:
+  name: test
+spec:
+  dependencies:
+    - punch-parsers:com.thalesgroup.com:punch-reference-parser:1.0.0
+  dag:
+    - id: input
+      kind: source
+      type: generator_source
+      settings:
+        expectation: none
+        messages:
+          - "program[123] color=red city=rome uri=https://punchplatform.com ip=5.23.164.1"
+      out:
+        - id: parser
+          table: logs
+          columns:
+            - name: data
+              type: string
+    - id: parser
+      type: punchlet_function
+      kind: function
+      settings:
+        resources:
+          - url: /usr/share/punch/resources/ecs-v1
+            type: file
+            format: grok2
+        punchlets:
+          - com/thalesgroup/punchplatform/reference/parser.punch
+          - com/thalesgroup/punchplatform/reference/enrich.punch
+      out:
+        - id: print
+          table: logs
+          columns:
+            - name: log
+              type: string
+            - name: sampleuri
+              type: string
+    - id: print
+      type: punchlet_function
+      kind: function
+      settings:
+        punchlet_code: "{print(root);}"
+

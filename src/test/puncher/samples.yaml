@@ -1,0 +1,15 @@
+---
+resources:
+  # Default grok patterns are provided by the punch image.
+  - type: file
+    url: /usr/share/punch/resources/ecs-v1
+    format: grok2
+punchlets:
+  - com/thalesgroup/punchplatform/sample/parser.punch
+samples:
+  logs:
+    data:
+    - samples1.txt
+validations:
+  - validationFileUrl: ecs-fields.csv
+    documentRoot: "logs.log"
