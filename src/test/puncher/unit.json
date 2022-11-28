@@ -2,11 +2,6 @@
   "debug": true,
   "resources": [
     {
-      "url": "/opt/punch/resources/ecs-v1",
-      "type": "file",
-      "format": "grok2"
-    },
-    {
       "url": "com/analytics/web/apache/http_codes.json",
       "type": "file",
       "format": "json",

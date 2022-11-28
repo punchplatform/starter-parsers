@@ -1,13 +1,17 @@
+// @test(fields=[raw_log]) 10.42.42.42 - - [07/Dec/2018:11:05:07 +0100] "GET /blog HTTP/1.1" 200 2571 "-" "Mozilla/5.0"
 {
-    // Extract the input log from one of the standard place holder.
+    // Extract the input log from one of the standard place-holders.
     String payload =
-        getFirstOf([log][event][original], [data], [raw_logs])
+        getFirstOf([log][event][original], [data], [raw_log])
         .asString("the incoming log does not appear in any standard field");
-    
+    [log][event][original] = payload;
+
+    // Parse the payload
     if (grok2("%{HTTPD_COMBINEDLOG}").on(payload).into([log])) {
         [log][source][ip] = [log][source][address];
         [log][event][dataset] = "apache.access";
     }
+    
     // The debug instruction has no effect in production.
     // It is however automatically activated when running tests.
     debug(root);

@@ -30,7 +30,7 @@ spec:
       kind: function
       type: punchlet
       settings:
-        columns_only: true
+        column: data
         debug: true
         resources:
           - name: http_codes

@@ -5,10 +5,8 @@ Quickstart example to create your parser development project.
 On the punch you develop parsers as part of simple Makefile based
 project.
 
-
-
-Together the punchlets parse, normalise and enrich the incoming logs, whatever their format is. The punch comes equipped
-with many parsers. Should you write your own, this project is for you.
+Together the punchlets parse, normalise and enrich the incoming logs, whatever their format is. 
+The punch comes equipped with many parsers. Should you write your own, this project is for you.
 
 ## Layout
 
