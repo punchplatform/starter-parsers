@@ -3,7 +3,7 @@
     // Extract the input log from one of the standard place-holders.
     String payload =
         getFirstOf([log][event][original], [data], [raw_log])
-        .asString("the incoming log does not appear in any standard field");
+        .asString();
     [log][event][original] = payload;
 
     // Parse the payload
