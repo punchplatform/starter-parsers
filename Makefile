@@ -84,6 +84,10 @@ delete: ## Delete (i.e. stop) the punchline in kooker/k8
 version: ## Get artifact version
 	@echo $(VERSION)
 
+.PHONY: name 
+name: ## Get artifact name
+	@echo $(ARTIFACT_ID)
+
 .PHONY: help
 help:
 	@echo Punch Parser Artifact Makefile help
