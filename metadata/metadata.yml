@@ -49,7 +49,8 @@ readme: | # (optional)
   If you work with kooker, simply type in make upload to upload your packaged platform
   onto the kooker artifact server. You can then execute the sample punchline to
   see it in action. 
-
+install: |
+  Add the 'punch-parsers:com.analytics.web:apache:2.0.0' to your punchline. 
 changelog: # (optional)
   - 1.0.0 first import from old version
   - 2.0.0 revamp to illustrate apache parsing
@@ -60,4 +61,4 @@ provider: # (optional)
   name: Punchplatform
   email: contact@punchplatform.com  
 punchVersionCompatible: # (optional)
-  - 8.0.3
+  - 8.0.10
