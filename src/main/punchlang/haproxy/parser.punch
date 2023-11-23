@@ -31,23 +31,16 @@
         [haproxy][connections][backend] = [haproxy][connections][backend].asInt();
         [http][response][status_code] = [http][response][status_code].asInt();
         [source][port] = [source][port].asInt();
-
         [source][bytes] = [source][bytes].asInt();
-        [http][response][body][bytes] = [source][bytes]; //DEMO
-        
-
+        [http][response][body][bytes] = [source][bytes];
         [message] = [haproxyuri];
         [event][duration] = [haproxy][http][request][total_time_ms];
         [client][address] = [source][address];
         [client][port] = [source][port];
         [destination][address] = [haproxy][server_name];
         [server][address] = [haproxy][server_name];
-
-        [source][ip] = [source][address]; //DEMO
-
-        
-    }
-    else{
-        raise("not a standard ha proxy log");
+        [source][ip] = [source][address];
+    } else {
+        raise("not the expected ha proxy log");
     }
 }
