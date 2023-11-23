@@ -5,15 +5,15 @@
     "core/syslog.punch"
   ],
   "input": {
-    "event": {
-      "original": "<14> Nov 23 10:35:12 loadbalancer1.example.com haproxy: 192.168.1.200:54321 [23/Nov/2023:10:35:12.789] myproxy http_back/back1 42/101/2/3985/8542 200 23456 - - ---- 6/5/3/6/42 4/4 \"GET /app/resource1\" HTTP/1.0"
+    "data_processing": {
+      "unparsed_data": "<14> Nov 23 10:35:12 loadbalancer1.example.com haproxy: 192.168.1.200:54321 [23/Nov/2023:10:35:12.789] myproxy http_back/back1 42/101/2/3985/8542 200 23456 - - ---- 6/5/3/6/42 4/4 \"GET /app/resource1\" HTTP/1.0"
     }
   },
   "output": {
     "includes": {
-        "event": {
-          "original": "<14> Nov 23 10:35:12 loadbalancer1.example.com haproxy: 192.168.1.200:54321 [23/Nov/2023:10:35:12.789] myproxy http_back/back1 42/101/2/3985/8542 200 23456 - - ---- 6/5/3/6/42 4/4 \"GET /app/resource1\" HTTP/1.0"
-        }
+      "ecs": {
+        "version": "8.2.1"
+      }
     }
   },
   "validations": [
