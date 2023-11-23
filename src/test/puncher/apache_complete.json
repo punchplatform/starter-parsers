@@ -9,21 +9,22 @@
     }
   ],
   "punchlets": [
+    "core/syslog.punch",
     "apache/parser.punch",
     "apache/enrichment.punch"
   ],
   "input": {
-      "event": {
-        "original": "10.42.42.42 - - [07/Dec/2018:11:05:07 +0100] \"GET /blog HTTP/1.1\" 200 2571 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36\""
+      "data_processing": {
+        "unparsed_data": "<14> Nov 23 10:30:45 webserver1.example.com apache: 192.168.1.100 - - [23/Nov/2023:10:30:45 +0000] \"GET /index.html HTTP/1.1\" 200 1234"
       }
   },
   "output": {
     "includes": {
         "event": {
-          "dataset": "apache.access"
-        },
-        "source": {
-          "ip": "10.42.42.42"
+          "dataset": "apache.access",
+          "source": {
+            "ip": "192.168.1.100"
+          }
         },
         "http": {
           "request": {

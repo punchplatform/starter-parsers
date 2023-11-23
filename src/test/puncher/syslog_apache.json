@@ -1,0 +1,25 @@
+{
+  "debug": true,
+  "resources": [],
+  "punchlets": [
+    "core/syslog.punch"
+  ],
+  "input": {
+    "data_processing": {
+      "unparsed_data": "<14> Nov 23 10:30:45 webserver1.example.com apache: 192.168.1.100 - - [23/Nov/2023:10:30:45 +0000] \"GET /index.html HTTP/1.1\" 200 1234"
+    }
+  },
+  "output": {
+    "includes": {
+        "ecs": {
+          "version": "8.2.1"
+        }
+    }
+  },
+  "validations": [
+    { 
+      "validationFileUrl": "ecs-fields.csv",
+      "documentRoot": "log"
+    }
+  ]
+}

@@ -1,18 +1,15 @@
 {
-    if (root.isStringLeaf()) {
-      [data_processing][unparsed_data] = root.asString();
-    }
-    if (![event][original]) {
-      [event][original] = [data_processing][unparsed_data];
-  }
+   debug("syslog.punch INPUT", root);
   [ecs][version] = "8.2.1";  
   Tuple tmp;
-  if (grok2("<%{POSINT:[priority]}> %{SYSLOGTIMESTAMP} %{HOSTNAME} %{WORD}: %{GREEDYDATA}")
-      .on([event][original])
+  if (grok2("<%{POSINT:[priority]}> %{SYSLOGTIMESTAMP} %{HOSTNAME} %{WORD}: %{GREEDYDATA:[greedydata]}")
+      .on([data_processing][unparsed_data])
       .into(tmp)) {
-    print("HOURRA");
     [event][syslog][facility][code] = tmp:[priority];
     [event][syslog][severity][code] = tmp:[priority];
-  } 
+    [data_processing][unparsed_data] = tmp:[greedydata];
+  } else {
+    raise("not the expected syslog header");
+  }
   debug("syslog.punch OUTPUT", root);
 }
