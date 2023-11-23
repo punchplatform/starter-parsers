@@ -24,13 +24,15 @@ links: # (optional)
     url: https://github.com/punchplatform/kooker
 
 readme: | # (optional)
-  This parser is a minimal example; based on the well-known apache log.
-  You can start from it to create your own parser. 
+  The parsers  pprovided in this packaged are examples base on well known
+  log types. T
   
   In the general case, a parser is simply a single 'parser.punch' 
   function that takes
   care of extracting the normalising the input logs into an ECS compliant 
   document ready to be inserted into Elasticsearch or Opensearch.
+
+  This single package provides several different parsers.
   
   The punchlang programming language provides many advanced functions
   to benefit from grok, key values, csv, and lots of conversions methods
@@ -54,6 +56,7 @@ install: |
 changelog: # (optional)
   - 1.0.0 first import from old version
   - 2.0.0 revamp to illustrate apache parsing
+  - 3.0.0 added more parsers to illustrate a simple autodiscovery setup
 maintainers: # (optional)
   - name: punch team
     email: contact@punchplatform.com

@@ -74,11 +74,11 @@ apply: ## Start the test punchline to kooker or you own k8 cluster
 
 .PHONY: logs
 logs: ## View the logs of the punchline running in kooker/k8
-	kubectl logs -f --tail -1 -l punchline-name=punchline-java
+	kubectl logs -f --tail -1 -l punchline-name=punchline
 
 .PHONY: delete
 delete: ## Delete (i.e. stop) the punchline in kooker/k8
-	kubectl delete -f src/test/kooker/punchline_java.yaml --ignore-not-found=true
+	kubectl delete -f src/test/kooker/punchline.yaml --ignore-not-found=true
 
 .PHONY: version 
 version: ## Get artifact version

@@ -1,0 +1,18 @@
+{
+    if (root.isStringLeaf()) {
+      [data_processing][unparsed_data] = root.asString();
+    }
+    if (![event][original]) {
+      [event][original] = [data_processing][unparsed_data];
+  }
+  [ecs][version] = "8.2.1";  
+  Tuple tmp;
+  if (grok2("<%{POSINT:[priority]}> %{SYSLOGTIMESTAMP} %{HOSTNAME} %{WORD}: %{GREEDYDATA}")
+      .on([event][original])
+      .into(tmp)) {
+    print("HOURRA");
+    [event][syslog][facility][code] = tmp:[priority];
+    [event][syslog][severity][code] = tmp:[priority];
+  } 
+  debug("syslog.punch OUTPUT", root);
+}

@@ -1,0 +1,53 @@
+// @test(fields=[logs][data]) 172.23.0.1:48630 [16/Jun/2022:20:22:55.903] myfrontend webservers/s2 -1/0/1/-1/11 200 643 - - ---- 2/2/0/0/0 0/0 "GET /favicon.ico HTTP/1.1"
+{
+    [event][original] = requiredString([data_processing][unparsed_data]);
+    [event][provider] = "haproxy";
+    
+	// We simply use the provided ECS grok pattern
+	// https://github.com/logstash-plugins/logstash-patterns-core/blob/main/patterns/ecs-v1/haproxy
+
+    if (grok2("%{HAPROXYHTTPBASE}").on([event][original]).into(root)) {
+
+        if ([haproxy][http][request][captured_headers]){
+            grok2("%{DATA:[haproxy][http][request][host]}\|%{DATA:[haproxy][http][request][x_forwarded_for]}\|%{DATA:[haproxy][http][request][accept_language]}\|%{DATA:[http][request][referrer]}\|%{DATA:[user_agent][original]}").on([haproxy][http][request][captured_headers]).into(root);
+        }
+        if ([haproxy][http][response][captured_headers]){
+            grok2("%{DATA:[http][response][mime_type]}\|%{DATA:[haproxy][http][response][encoding]}\|%{DATA:[haproxy][http][response][cache_control]}\|%{DATA:[haproxy][http][response][last_modified]}").on([haproxy][http][response][captured_headers]).into(root); 
+        }
+
+        [haproxy][http][request][time_wait_ms] = [haproxy][http][request][time_wait_ms].asInt(); //TR (notation HAPROXY)
+        [haproxy][total_waiting_time_ms] = [haproxy][total_waiting_time_ms].asInt(); // Tw (notation HAPROXY)
+        [haproxy][connection_wait_time_ms] = [haproxy][connection_wait_time_ms].asInt(); // Tc (notation HAPROXY)
+        [haproxy][http][request][time_wait_without_data_ms] = [haproxy][http][request][time_wait_without_data_ms].asInt(); //Tr (notation HAPROXY)
+        [haproxy][total_time_ms] = [haproxy][total_time_ms].asInt(); //Ta (notation HAPROXY)
+        [haproxy][data_transmission_time] = [haproxy][total_time_ms] - ([haproxy][http][request][time_wait_ms] + [haproxy][total_waiting_time_ms] + [haproxy][connection_wait_time_ms] + [haproxy][http][request][time_wait_without_data_ms]); // Td = Ta - (TR + Tw + Tc + Tr) (notation HAPROXY)
+
+        [haproxy][backend_queue] = [haproxy][backend_queue].asInt(); 
+        [haproxy][server_queue] = [haproxy][server_queue].asInt();
+        [haproxy][connections][retries] = [haproxy][connections][retries].asInt();
+        [haproxy][connections][server] = [haproxy][connections][server].asInt();
+        [haproxy][connections][active] = [haproxy][connections][active].asInt();
+        [haproxy][connections][frontend] = [haproxy][connections][frontend].asInt();
+        [haproxy][connections][backend] = [haproxy][connections][backend].asInt();
+        [http][response][status_code] = [http][response][status_code].asInt();
+        [source][port] = [source][port].asInt();
+
+        [source][bytes] = [source][bytes].asInt();
+        [http][response][body][bytes] = [source][bytes]; //DEMO
+        
+
+        [message] = [haproxyuri];
+        [event][duration] = [haproxy][http][request][total_time_ms];
+        [client][address] = [source][address];
+        [client][port] = [source][port];
+        [destination][address] = [haproxy][server_name];
+        [server][address] = [haproxy][server_name];
+
+        [source][ip] = [source][address]; //DEMO
+
+        
+    }
+    else{
+        raise("not a standard ha proxy log");
+    }
+}
