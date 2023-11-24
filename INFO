@@ -5,7 +5,7 @@
 # to generate the used complete metadata.yml descriptor file.
 
 GROUP_ID ?= com.github.punchplatform
-ARTIFACT_ID ?= starter-parser
+ARTIFACT_ID ?= starter-parsers
 VERSION ?= 3.0.0
 BUILD_TIMESTAMP = $(shell date '+%Y-%m-%d %H:%M')
 ARTIFACT_SERVER_URL ?= http://artifacts-server.punch:8080
