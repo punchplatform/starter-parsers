@@ -6,51 +6,51 @@ version: ${VERSION}
 artifact: ${ARTIFACT_ID}
 displayName: ${ARTIFACT_ID}
 createdAt: ${BUILD_TIMESTAMP}
-description: This package provides an ECS compliant sample parser
+description: Apache and Ha Proxy demonstration log parsers.
 keywords: # (optional)
   - Punch
   - ECS
-  - Parsers
+  - Parser
+  - Cyber
 links: # (optional)
   - name: Punch documentation
     url: https://doc.punchplatform.com
   - name: ECS documentation
     url: https://www.elastic.co/guide/en/ecs/current/index.html
-  - name: punchlang documentation
-    url: https://punch-1.gitbook.io/punch-doc/punchlang/overview
+  - name: Punchlang documentation
+    url: https://punch-1.gitbook.io/punch-doc/v/punch-8.1/development/sdks/punchlang/overview
   - name: ECS apache blog
     url: https://www.elastic.co/blog/introducing-the-elastic-common-schema
   - name: Kooker documentation
     url: https://github.com/punchplatform/kooker
 
 readme: | # (optional)
-  The parsers  pprovided in this packaged are examples base on well known
-  log types. T
+  The punch parsers provided in this packaged are examples based on well known
+  log types. 
   
-  In the general case, a parser is simply a single 'parser.punch' 
-  function that takes
-  care of extracting the normalising the input logs into an ECS compliant 
+  In general, a parser is simply a single 'parser.punch' function that takes
+  care of extracting then normalising the input logs into an ECS compliant 
   document ready to be inserted into Elasticsearch or Opensearch.
-
   This single package provides several different parsers.
   
   The punchlang programming language provides many advanced functions
   to benefit from grok, key values, csv, and lots of conversions methods
   to easily deal with the most common log fields. In particular
-  the sample shown here illustrates how to enrich your documents on the fly using
+  the samples shown here illustrate how to enrich your documents on the fly using
   external JSON (or CSV) files. 
   
-  In addition the punchplatform SDK and tooling helps you to unit test then package
-  your parser to make it available onto your running platform.  
+  In addition, the punch SDK and tooling helps you to unit test then package
+  a,d deploy your parsers to your running platform.  
   
   The goal of all this is simply to let parser developers focus on writing
-  robust and well-tested parser, ensuring they produce the correct ECS
-  output format, and let the platform administrator deploy these parser in the adequate
-  pipelines. 
+  robust and well-tested parsers, ensuring they produce the correct ECS
+  output format, and let the platform administrator deploy these parser in the 
+  adequate data pipelines. 
   
-  If you work with kooker, simply type in make upload to upload your packaged platform
-  onto the kooker artifact server. You can then execute the sample punchline to
-  see it in action. 
+  If you work with kooker, simply type in 'make upload' to upload your packaged platform
+  into the kooker artifact server. You can then execute the sample punchline to
+  see it in action.
+
 install: |
   Add the 'punch-parsers:com.analytics.web:apache:2.0.0' to your punchline. 
 changelog: # (optional)
@@ -58,10 +58,10 @@ changelog: # (optional)
   - 2.0.0 revamp to illustrate apache parsing
   - 3.0.0 added more parsers to illustrate a simple autodiscovery setup
 maintainers: # (optional)
-  - name: punch team
+  - name: Punch team
     email: contact@punchplatform.com
 provider: # (optional)
-  name: Punchplatform
+  name: Punch
   email: contact@punchplatform.com  
 punchVersionCompatible: # (optional)
   - 8.0.10
